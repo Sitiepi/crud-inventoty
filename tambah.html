@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>tambah</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="container">
+    <h1>Form tambah barang</h1>
+    <form id="formTambah">
+      
+      
+      <label> Nama Barang</label>
+      <input type="text" id="namabarang" />
+      
+      <label> Harga</label>
+      <input type="text" id="harga" />
+      
+      <label>Stok</label>
+      <input type="text" id="stok" />
+      
+      <button id="tombol" type="submit">simpan</button>
+      <a href="daftar.html">Daftar Barang</a>
+    </form>
+  </div>
+  
+  <script type="module">
+    import { tambahDataBarang } from './main.js'
+    
+    //mengirimkan data barang ke form
+    const formTambah = document.getElementById('formTambah')
+    
+    //event ketika form disumbit
+    formTambah.addEventListener('submit', function(e) {
+      //pencegah reload halaman
+      e.preventDefault()
+      
+      tambahDataBarang()
+    })
+  </script>
+</body>
+
+</html>

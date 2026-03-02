@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ubah Data Barang</title>
+  
+  
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <div class="container">
+    <h1>Form ubah barang</h1>
+    <form id="formUbah">
+
+      
+      <label> Nama barang</label>
+      <input type="text" id="namabarang" />
+      
+      <label>harga</label>
+      <input type="text" id="harga"/>
+        
+        <label>stok</label>
+        <input type="text" id="stok" />
+        
+      <button id="tombol" type="submit">simpan</button>
+      <a href="daftar.html">Daftar Barang</a>
+    </form>
+  </div>
+  
+  <script type="module">
+    import { ambilDataBarang, ubahDataBarang } from './main.js'
+    
+    //mengambil id dari url
+    const urlParams = new URLSearchParams(window.location.search)
+    const idBarang = urlParams.get('id')
+    console.log(idBarang)
+    //mengisi form dengan data barang yang diambil dari firebase 
+    
+    const barang = await ambilDataBarang(idBarang)
+    console.log(barang)
+    
+    document.getElementById('namabarang').value = barang.namabarang
+    document.getElementById('harga').value = barang.harga
+    document.getElementById('stok').value = barang.stok
+    
+    const formUbah = document.getElementById('formUbah')
+    
+    formUbah.addEventListener('submit', function(e) {
+      e.preventDefault()
+      
+      const namabarang = document.getElementById('namabarang').value
+      const harga = document.getElementById('harga').value
+      const stok = document.getElementById('stok').value 
+      
+      ubahDataBarang(idBarang,namabarang,harga,stok)
+      
+    })
+  </script>
+  
+</body>
+
+</html>
